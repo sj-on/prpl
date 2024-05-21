@@ -109,6 +109,15 @@ async function interpolateList(args: {
             ? firstComparator - secondComparator
             : secondComparator - firstComparator;
         }
+        // sort by "order" metadata
+        if (sort?.toLowerCase() === 'order') {
+          firstComparator = Number(firstComparator);
+          secondComparator = Number(secondComparator);
+
+          return direction === PRPLDirectionAttributeValue.asc
+            ? firstComparator - secondComparator
+            : secondComparator - firstComparator;
+        }
 
         if (firstComparator === secondComparator) {
           return 0;
